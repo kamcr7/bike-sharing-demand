@@ -1,0 +1,18 @@
+variable,tipo_general,descripcion,minimo,maximo,valores_faltantes,uso_propuesto
+instant,entero,Índice del registro,1,17379,0,No usar como predictor
+dteday,fecha,Fecha del registro,2011-01-01,2012-12-31,0,Análisis temporal
+season,categórica,"Temporada: 1 primavera, 2 verano, 3 otoño, 4 invierno",1,4,0,Predictor
+yr,binaria,"Año: 0=2011, 1=2012",0,1,0,Predictor
+mnth,categórica,"Mes, de 1 a 12",1,12,0,Predictor
+hr,categórica/ordinal,"Hora del día, de 0 a 23",0,23,0,Predictor
+holiday,binaria,Indica si el día es festivo,0,1,0,Predictor
+weekday,categórica,Día de la semana,0,6,0,Predictor
+workingday,binaria,1 si no es fin de semana ni festivo; 0 en otro caso,0,1,0,Predictor
+weathersit,categórica,Situación climática codificada de 1 a 4,1,4,0,Predictor
+temp,continua,Temperatura normalizada; valor original dividido entre 41,0.02,1.0,0,Predictor
+atemp,continua,Sensación térmica normalizada; valor original dividido entre 50,0.0,1.0,0,Predictor
+hum,continua,Humedad normalizada; valor original dividido entre 100,0.0,1.0,0,Predictor
+windspeed,continua,Velocidad del viento normalizada; valor original dividido entre 67,0.0,0.8507,0,Predictor
+casual,entero,Cantidad de usuarios casuales,0,367,0,Descriptiva; no usar para predecir cnt
+registered,entero,Cantidad de usuarios registrados,0,886,0,Descriptiva; no usar para predecir cnt
+cnt,entero,Cantidad total de bicicletas rentadas,1,977,0,Variable objetivo de regresión

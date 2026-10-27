@@ -1,0 +1,21 @@
+{
+  "features": [
+    "hr",
+    "weekday",
+    "workingday",
+    "holiday",
+    "season",
+    "mnth",
+    "yr",
+    "weathersit",
+    "temp",
+    "atemp",
+    "hum",
+    "windspeed"
+  ],
+  "nota_fuga_datos": "casual y registered se excluyen porque cnt = casual + registered",
+  "regresion_mejor_modelo": "random_forest_regressor",
+  "clasificacion_mejor_modelo": "random_forest_classifier",
+  "clasificacion_percentil_33": 69.0,
+  "clasificacion_percentil_67": 228.0
+}
