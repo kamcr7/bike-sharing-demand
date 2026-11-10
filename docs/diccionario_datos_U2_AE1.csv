@@ -1,0 +1,18 @@
+Variable,Descripcion,Tipo_Python,Tipo_variable,Clasificacion,Unidad,Posible_utilidad
+instant,Indice del registro,int64,Cuantitativa,Discreta,Registro,Identificacion; no se propone como predictor
+dteday,Fecha de observacion,object,Cualitativa/temporal,Temporal,Fecha,Analisis de tendencias por fecha
+season,Temporada (1-4),int64,Cualitativa,Nominal codificada,Categoria,Comparar demanda por temporada
+yr,"Anio (0=2011, 1=2012)",int64,Cualitativa,Binaria,Categoria,Comparar los dos anios
+mnth,Mes (1-12),int64,Cualitativa,Ordinal,Mes,Patrones mensuales
+hr,Hora (0-23),int64,Cualitativa,Ordinal,Hora,Patrones horarios y predictor
+holiday,Indica dia festivo,int64,Cualitativa,Binaria,Categoria,Efecto de dias festivos
+weekday,Dia de la semana (0-6),int64,Cualitativa,Nominal codificada,Categoria,Patrones semanales
+workingday,Dia laborable,int64,Cualitativa,Binaria,Categoria,Comparar dias laborables/no laborables
+weathersit,Situacion climatica (1-4),int64,Cualitativa,Ordinal,Categoria,Relacion entre clima y demanda
+temp,Temperatura normalizada,float64,Cuantitativa,Continua,Proporcion normalizada,Predictor meteorologico
+atemp,Sensacion termica normalizada,float64,Cuantitativa,Continua,Proporcion normalizada,Predictor meteorologico
+hum,Humedad normalizada,float64,Cuantitativa,Continua,Proporcion normalizada,Predictor meteorologico
+windspeed,Velocidad del viento normalizada,float64,Cuantitativa,Continua,Proporcion normalizada,Predictor meteorologico
+casual,Usuarios casuales,int64,Cuantitativa,Discreta,Usuarios,Descripcion de demanda; evitar como predictor directo de cnt
+registered,Usuarios registrados,int64,Cuantitativa,Discreta,Usuarios,Descripcion de demanda; evitar como predictor directo de cnt
+cnt,Total de bicicletas rentadas,int64,Cuantitativa,Discreta,Rentas,Variable objetivo propuesta para regresion
