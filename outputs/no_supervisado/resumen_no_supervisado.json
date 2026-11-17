@@ -1,0 +1,17 @@
+{
+  "variables": [
+    "hr",
+    "weekday",
+    "season",
+    "weathersit",
+    "temp",
+    "hum",
+    "windspeed",
+    "cnt"
+  ],
+  "mejor_k": 4,
+  "silhouette_mejor_k": 0.17763662449913162,
+  "pca_varianza_explicada_pc1": 0.2528262242859417,
+  "pca_varianza_explicada_pc2": 0.18618709326634972,
+  "pca_varianza_explicada_total_2_componentes": 0.43901331755229145
+}

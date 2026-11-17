@@ -1,6 +1,6 @@
-# Prediccion de demanda en un sistema de bicicletas compartidas
+# Predicción de demanda en un sistema de bicicletas compartidas
 
-Proyecto individual de recursamiento de la asignatura **Extraccion de Conocimiento en Bases de Datos**.
+Proyecto individual de recursamiento de la asignatura **Extracción de Conocimiento en Bases de Datos**.
 
 **Alumno:** Mark Alan Moya Galindo  
 **Proyecto:** No. 3  
@@ -8,21 +8,13 @@ Proyecto individual de recursamiento de la asignatura **Extraccion de Conocimien
 **Fuente:** UCI Machine Learning Repository  
 **Repositorio:** https://github.com/kamcr7/bike-sharing-demand
 
-## Objetivo del proyecto
+## Objetivo
 
-Analizar el conjunto de datos Bike Sharing para identificar los factores relacionados con la demanda de bicicletas y preparar modelos que permitan estimar la cantidad de rentas y clasificar niveles de demanda.
+Analizar el dataset Bike Sharing para identificar factores relacionados con la demanda de bicicletas y desarrollar un flujo completo de exploración, preparación, modelado supervisado, análisis no supervisado y visualización.
 
 ## Dataset
 
-El dataset Bike Sharing contiene informacion horaria y diaria del sistema Capital Bikeshare para los anios 2011 y 2012, junto con variables relacionadas con tiempo, calendario y clima.
-
-Para el analisis principal se utiliza `hour.csv`, que contiene **17,379 registros y 17 variables**.
-
-La variable principal a predecir sera `cnt`, que representa el total de bicicletas rentadas.
-
-## Archivos originales
-
-Los archivos originales se conservan sin modificaciones en:
+El análisis principal utiliza `hour.csv`, con **17,379 registros y 17 variables**. El dataset original permanece sin modificaciones en:
 
 ```text
 data/raw/
@@ -31,88 +23,154 @@ data/raw/
 └── Readme.txt
 ```
 
-## Variables de interes
+## Estado del proyecto - corte del 17 de noviembre de 2026
 
-- `hr`: hora del dia.
-- `weekday`: dia de la semana.
-- `workingday`: indica si es dia laboral.
-- `holiday`: indica si es dia festivo.
-- `season`: temporada del anio.
-- `mnth`: mes.
-- `weathersit`: condicion general del clima.
-- `temp`: temperatura normalizada.
-- `atemp`: sensacion termica normalizada.
-- `hum`: humedad normalizada.
-- `windspeed`: velocidad del viento normalizada.
-- `cnt`: cantidad total de bicicletas rentadas.
+### Unidad II - Exploración y diagnóstico
+Completado:
+- exploración con Pandas;
+- diccionario de datos;
+- faltantes y duplicados;
+- inconsistencias y outliers;
+- estadística descriptiva;
+- visualizaciones;
+- notebook e informe PDF.
 
-Las variables `casual` y `registered` se utilizan principalmente para descripcion, pero no como predictores directos de `cnt`, ya que `cnt` corresponde a la suma de ambos conteos.
+### Unidad II - ETL y Data Mart
+Implementado:
+- `src/etl.py`
+- `notebooks/02_limpieza_etl.ipynb`
+- `data/processed/bike_sharing_clean.csv`
+- `data/processed/bike_sharing_datamart.db`
+- `docs/esquema_data_mart.md`
+- `sql/datamart.sql`
 
-## Analisis planeado
+### Unidad III - Análisis supervisado
+Implementado:
+- regresión lineal;
+- Random Forest Regressor;
+- regresión logística;
+- Random Forest Classifier;
+- métricas de regresión y clasificación;
+- matriz de confusión;
+- modelos serializados.
 
-### Regresion
-Predecir la cantidad total de bicicletas rentadas (`cnt`) utilizando variables temporales, de calendario y climaticas.
+Archivos:
+```text
+src/modelos.py
+notebooks/03_modelos_supervisados.ipynb
+outputs/metricas/
+outputs/modelos/
+outputs/graficas/
+```
 
-### Clasificacion
-Crear posteriormente una variable derivada de nivel de demanda con tres categorias: baja, media y alta. Los puntos de corte se documentaran antes del modelado.
+### Unidad IV - Análisis no supervisado
+Se agrega:
+- estandarización de variables;
+- K-Means;
+- evaluación de k entre 2 y 8;
+- método del codo;
+- Silhouette Score;
+- perfil de clusters;
+- PCA con dos componentes;
+- visualización de clusters.
 
-### Analisis no supervisado
-Explorar agrupamientos que permitan identificar perfiles de uso relacionados con horarios y condiciones climaticas.
+Archivos:
+```text
+src/no_supervisado.py
+notebooks/Moya_MarkAlan_U4_AnalisisNoSupervisado.ipynb
+outputs/no_supervisado/
+```
 
-## Metodologia
+Variables:
+```text
+hr
+weekday
+season
+weathersit
+temp
+hum
+windspeed
+cnt
+```
 
-El proyecto sigue CRISP-DM:
-1. Comprension del negocio.
-2. Comprension de los datos.
-3. Preparacion de los datos.
-4. Modelado.
-5. Evaluacion.
-6. Despliegue y documentacion.
+## Dashboard
+El dashboard se encuentra en:
+```text
+dashboard/app.py
+```
 
-## Unidad II - Actividad de Evaluacion 1
+Actualmente presenta datos, calidad, estadística descriptiva y visualizaciones. Para el cierre se continuará integrando resultados supervisados y no supervisados.
 
-Esta actividad realiza la **exploracion y diagnostico del dataset original**, sin modificar `data/raw/hour.csv`.
-
-Evidencias agregadas:
+## Estructura principal
 
 ```text
-notebooks/Moya_MarkAlan_U2_AE1_Exploracion.ipynb
-docs/Moya_MarkAlan_U2_AE1_Diagnostico.pdf
-docs/diccionario_datos_U2_AE1.csv
-dashboard/app.py
-outputs/u2_ae1/
+bike-sharing-demand/
+├── README.md
+├── data/
+│   ├── raw/
+│   └── processed/
+├── notebooks/
+│   ├── Moya_MarkAlan_U2_AE1_Exploracion.ipynb
+│   ├── 02_limpieza_etl.ipynb
+│   ├── 03_modelos_supervisados.ipynb
+│   └── Moya_MarkAlan_U4_AnalisisNoSupervisado.ipynb
+├── sql/
+│   └── datamart.sql
+├── src/
+│   ├── etl.py
+│   ├── modelos.py
+│   └── no_supervisado.py
+├── outputs/
+├── dashboard/
+├── docs/
+└── requirements.txt
 ```
 
-Incluye:
-- carga y exploracion con Pandas;
-- numero de registros y variables;
-- diccionario de datos;
-- clasificacion de variables;
-- tipo y fuente de los datos;
-- valores faltantes y duplicados;
-- validaciones de consistencia;
-- deteccion inicial de valores atipicos;
-- estadistica descriptiva;
-- visualizaciones;
-- propuestas para regresion, clasificacion y agrupamiento;
-- dashboard interactivo.
-
-### Ejecutar el notebook
-
-Abre `notebooks/Moya_MarkAlan_U2_AE1_Exploracion.ipynb` en VS Code o Jupyter y ejecuta todas las celdas.
-
-### Ejecutar el dashboard
+## Ejecución
 
 ```powershell
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-streamlit run dashboard/app.py
+python -m pip install -r requirements.txt
 ```
+
+ETL:
+```powershell
+python src/etl.py
+```
+
+Modelos supervisados:
+```powershell
+python src/modelos.py
+```
+
+Análisis no supervisado:
+```powershell
+python src/no_supervisado.py
+```
+
+Dashboard:
+```powershell
+python -m streamlit run dashboard/app.py
+```
+
+Jupyter:
+```powershell
+python -m jupyter notebook
+```
+
+## Metodología
+El proyecto sigue CRISP-DM:
+1. Comprensión del negocio.
+2. Comprensión de los datos.
+3. Preparación de los datos.
+4. Modelado.
+5. Evaluación.
+6. Despliegue y documentación.
 
 ## Pregunta principal
 
-¿En que medida la hora, el tipo de dia, la temporada y las condiciones climaticas permiten predecir la cantidad total de bicicletas rentadas en el sistema Bike Sharing?
+**¿En qué medida la hora, el tipo de día, la temporada y las condiciones climáticas permiten predecir la cantidad total de bicicletas rentadas en el sistema Bike Sharing?**
 
-## Fuente del dataset
-
+## Fuente
 Fanaee-T, H. (2013). *Bike Sharing* [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5W894
