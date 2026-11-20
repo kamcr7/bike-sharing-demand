@@ -83,7 +83,7 @@ tabs = st.tabs(["Datos","Calidad","Estadistica","Visualizaciones","Analisis post
 with tabs[0]:
     st.subheader("Datos originales")
     st.write(f"Registros despues de filtros: **{len(view):,}**")
-    st.dataframe(view.head(250), use_container_width=True, height=430)
+    st.dataframe(view.head(250), width="stretch", height=430)
 
     st.subheader("Estructura")
     left, right = st.columns(2)
@@ -93,13 +93,13 @@ with tabs[0]:
     with right:
         tipos = pd.DataFrame({"Variable":df.columns,"Tipo":[str(x) for x in df.dtypes]})
         st.write("**Tipos de datos**")
-        st.dataframe(tipos, use_container_width=True, hide_index=True)
+        st.dataframe(tipos, width="stretch", hide_index=True)
 
 with tabs[1]:
     st.subheader("Valores faltantes")
     faltantes = df.isnull().sum().to_frame("Faltantes")
     faltantes["Porcentaje"] = (faltantes["Faltantes"]/len(df)*100).round(2)
-    st.dataframe(faltantes, use_container_width=True)
+    st.dataframe(faltantes, width="stretch")
 
     st.subheader("Registros duplicados")
     st.metric("Filas completas duplicadas", int(df.duplicated().sum()))
@@ -119,7 +119,7 @@ with tabs[1]:
         "cnt = casual + registered": (df["cnt"] == df["casual"] + df["registered"]).all(),
     }
     st.dataframe(pd.DataFrame({"Comprobacion":checks.keys(),"Cumple":checks.values()}),
-                 use_container_width=True, hide_index=True)
+                 width="stretch", hide_index=True)
 
     st.subheader("Posibles valores atipicos por IQR")
     rows=[]
@@ -131,7 +131,7 @@ with tabs[1]:
         rows.append([col,q1,q3,li,ls,n])
     st.dataframe(pd.DataFrame(rows,columns=[
         "Variable","Q1","Q3","Limite inferior","Limite superior","Posibles atipicos"
-    ]).round(4), use_container_width=True, hide_index=True)
+    ]).round(4), width="stretch", hide_index=True)
     st.warning("Un valor atipico no es automaticamente un error. En esta actividad solo se diagnostica.")
 
 with tabs[2]:
@@ -144,7 +144,7 @@ with tabs[2]:
         "Maximo":df[variables].max(),
         "Desviacion estandar":df[variables].std()
     })
-    st.dataframe(stats.round(4), use_container_width=True)
+    st.dataframe(stats.round(4), width="stretch")
     st.write(
         f"La demanda (`cnt`) tiene media **{df['cnt'].mean():.2f}**, mediana **{df['cnt'].median():.0f}** "
         f"y desviacion estandar **{df['cnt'].std():.2f}**, mostrando una variacion alta entre horas."
@@ -158,7 +158,7 @@ with tabs[3]:
     ax.set_xlabel("Hora")
     ax.set_ylabel("Promedio de rentas")
     ax.grid(alpha=.3)
-    st.pyplot(fig, use_container_width=True)
+    st.pyplot(fig, width="stretch")
     plt.close(fig)
 
     a,b=st.columns(2)
@@ -169,7 +169,7 @@ with tabs[3]:
         ax.bar(by_weather.index.astype(str),by_weather.values)
         ax.set_xlabel("weathersit")
         ax.set_ylabel("Promedio de rentas")
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close(fig)
     with b:
         st.subheader("Demanda por temporada")
@@ -178,7 +178,7 @@ with tabs[3]:
         ax.bar([SEASONS[x] for x in by_season.index],by_season.values)
         ax.tick_params(axis="x",rotation=20)
         ax.set_ylabel("Promedio de rentas")
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close(fig)
 
     a,b=st.columns(2)
@@ -188,7 +188,7 @@ with tabs[3]:
         ax.hist(view["cnt"],bins=30,edgecolor="black",linewidth=.4)
         ax.set_xlabel("Rentas por hora")
         ax.set_ylabel("Frecuencia")
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close(fig)
     with b:
         st.subheader("Temperatura vs demanda")
@@ -197,7 +197,7 @@ with tabs[3]:
         ax.scatter(muestra["temp"],muestra["cnt"],alpha=.25,s=12)
         ax.set_xlabel("Temperatura normalizada")
         ax.set_ylabel("cnt")
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig, width="stretch")
         plt.close(fig)
 
     st.subheader("Boxplots")
@@ -206,7 +206,7 @@ with tabs[3]:
         ax.boxplot(df[col].dropna())
         ax.set_title(col)
     plt.tight_layout()
-    st.pyplot(fig, use_container_width=True)
+    st.pyplot(fig, width="stretch")
     plt.close(fig)
 
 with tabs[4]:
